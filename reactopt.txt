@@ -1,0 +1,95 @@
+**PROMPT 1: Identification & Analysis**
+
+```
+You are a senior React performance auditor. Analyze this React component comprehensively and provide a detailed performance assessment report.
+
+YOUR TASK:
+Conduct a thorough performance audit and identify ALL issues, inefficiencies, and optimization opportunities.
+
+ANALYSIS FRAMEWORK:
+
+1. RE-RENDER ANALYSIS
+   - Identify what triggers component re-renders
+   - Map the re-render cascade (which state changes cause which re-renders)
+   - Identify unnecessary re-renders in parent and child components
+
+2. COMPUTATION ANALYSIS
+   - Identify expensive calculations and their frequency
+   - Determine if computations are being recalculated unnecessarily
+   - Assess the computational complexity of each operation
+
+3. MEMORY ANALYSIS
+   - Identify functions/objects created on every render
+   - Detect reference identity issues causing child re-renders
+   - Find memory allocation inefficiencies
+
+4. COMPONENT ARCHITECTURE
+   - Evaluate component structure and separation of concerns
+   - Identify prop drilling or unnecessary prop changes
+   - Assess child component optimization opportunities
+
+5. DEPENDENCY TRACKING
+   - Map out data dependencies (what depends on what)
+   - Identify which optimizations would provide the most impact
+
+DELIVERABLES:
+Provide a structured report with:
+- Executive Summary: Top 3 critical performance issues
+- Detailed Issue Breakdown: Each problem with severity (Critical/High/Medium/Low)
+- Impact Analysis: What triggers each issue and its performance cost
+- Dependency Map: Visual representation of what depends on what
+- Optimization Priority List: Ordered by impact (what to fix first)
+- Specific recommendations for each issue with the React hooks/patterns to use
+
+Format your response clearly with sections, bullet points, and code snippets where relevant.
+Be specific about WHY each issue matters and WHEN it causes problems.
+```
+
+---
+
+**PROMPT 2: Fine-Tuned Optimization (Use after getting the analysis)**
+
+```
+Based on your analysis, create an optimized production-ready version of this React component.
+
+CONTEXT FROM ANALYSIS:
+[Paste the key findings from the analysis here - the top 3-5 issues identified]
+
+OPTIMIZATION REQUIREMENTS:
+
+1. IMPLEMENT FIXES IN PRIORITY ORDER
+   - Start with the highest impact optimizations first
+   - Address each identified issue systematically
+   - Ensure fixes don't introduce new problems
+
+2. APPLY REACT PERFORMANCE PATTERNS
+   - Use useMemo for expensive calculations and derived state
+   - Use useCallback for function references passed to children
+   - Use React.memo for components that re-render unnecessarily
+   - Ensure all dependency arrays are correct and minimal
+
+3. MAINTAIN CODE QUALITY
+   - Keep the code readable and maintainable
+   - Add clear comments explaining each optimization
+   - Follow React best practices and conventions
+   - Preserve all existing functionality
+
+4. VERIFICATION APPROACH
+   - Keep console.log statements to demonstrate improvements
+   - Ensure the optimization is measurable
+   - Test that all user interactions still work correctly
+
+SPECIFIC IMPLEMENTATION GUIDELINES:
+- For each optimization, add a comment explaining: what it does, why it's needed, what it prevents
+- Use meaningful variable names for memoized values
+- Group related optimizations together
+- Consider edge cases and ensure robust dependency arrays
+
+DELIVERABLES:
+1. Complete optimized component code
+2. Before/After comparison comment block showing what changed
+3. Performance impact notes (what re-renders/recalculations are now prevented)
+4. Any trade-offs or considerations for maintenance
+
+Create production-ready code that solves the identified performance issues while maintaining clarity and maintainability.
+```

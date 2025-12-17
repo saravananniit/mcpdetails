@@ -1,0 +1,20 @@
+You are a senior Java developer. Generate a Java 17 Spring Boot project (Maven) that calls https://jsonplaceholder.typicode.com using a WebClient-based service and includes TestNG tests.
+
+Requirements:
+- Java 17 (maven-compiler-plugin release=17).
+- Spring Boot 3.x, spring-boot-starter-webflux for WebClient.
+- Test dependencies: spring-boot-starter-test (exclude JUnit), TestNG, and RestAssured for API assertions.
+- Configure maven-surefire-plugin to run TestNG via src/test/resources/testng.xml.
+- Create DTOs as Java records for posts (userId,id,title,body).
+- Service: JsonPlaceholderClient with methods: getPosts(), getPost(id), createPost(post), updatePost(id,post), patchPost(id,map), deletePost(id).
+- Tests:
+  1) API tests (RestAssured + TestNG): validate status codes and basic payload structure for GET /posts, GET /posts/{id}, POST /posts, PUT /posts/{id}, PATCH /posts/{id}, DELETE /posts/{id}. Include a DataProvider to try multiple IDs.
+  2) Client tests (SpringBootTest + TestNG): autowire JsonPlaceholderClient and assert deserialization and key fields.
+- Base URL configurable via application.yml (default: https://jsonplaceholder.typicode.com) and overridable via env var JSONPLACEHOLDER_BASE_URL.
+- Provide instructions to run: `mvn -q -DskipTests=false clean test`.
+
+Also include:
+- testng.xml with two <test> groups (api and client) using package scanning.
+- Negative test for a non-existent endpoint returning 404.
+- Robust timeouts and simple retry (WebClient: set response timeout; RestAssured: request timeout).
+- Comments explaining JSONPlaceholder is a fake API—POST/PUT/PATCH/DELETE are simulated.
